@@ -1,0 +1,21 @@
+[TAIPY]
+
+[DATA_NODE.first_district_name]
+
+[DATA_NODE.second_district_name]
+
+[DATA_NODE.comparision_output_data_node]
+
+[TASK.compare_stat]
+function = "__main__.compareStats:function"
+inputs = [ "first_district_name:SECTION", "second_district_name:SECTION",]
+outputs = [ "comparision_output_data_node:SECTION",]
+skippable = "False:bool"
+
+[SCENARIO.scenario]
+tasks = [ "compare_stat:SECTION",]
+additional_data_nodes = []
+
+[SCENARIO.scenario.comparators]
+
+[SCENARIO.scenario.sequences]
