@@ -51,17 +51,33 @@ compare_stats_md = """
 # Create your scenario:
 <|{scenario}|scenario_selector|>
 
-# Select the data
+# Select the District to Compare
 
+<|layout|columns=1 1|gap=30px|class_name=card|
+
+<|container|
+### District One
 <|{district_one}|selector|lov={district_list}|on_change=save|dropdown|active={scenario}|>
+|>
 
+<|container|
+### District Two
 <|{district_two}|selector|lov={district_list}|on_change=save|dropdown|active={scenario}|>
+|>
 
-Run the scenario
+|>
+
+
+# Run the **scenario**{:.color-primary}
+
+<|layout|columns=1 1|
+
 <|{scenario}|scenario|>
-<|{scenario}|scenario_dag|>
 
-View all the information on your prediction here
+<|{scenario}|scenario_dag|>
+|>
+
+# **Comparision Stats**{:.color-primary}
 <|{scenario.comparision_output_data_node}|data_node|>
 """
 
