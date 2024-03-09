@@ -47,6 +47,12 @@ scenario_cfg = Config.configure_scenario(
 
 Config.export('config.toml')
 
+def follow_execution(state, submittable, details):
+    print(details['submission_status'])
+    if details['submission_status'] == 'COMPLETED':
+        state.scenario_output = state.scenario.comparision_output_data_node.read()
+
+
 compare_stats_md = """
 # Create your scenario:
 <|{scenario}|scenario_selector|>
@@ -72,14 +78,15 @@ compare_stats_md = """
 
 <|layout|columns=1 1|
 
-<|{scenario}|scenario|>
+<|{scenario}|scenario|on_submission_change=follow_execution|>
 
 <|{scenario}|scenario_dag|>
 |>
 
 # **Comparision Stats**{:.color-primary}
-<|{scenario.comparision_output_data_node}|data_node|>
+<|{scenario_output}|text|>
 """
+scenario_output =None
 
 pages = {
     "/": root_md,
